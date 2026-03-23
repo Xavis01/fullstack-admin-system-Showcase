@@ -135,51 +135,30 @@ Sistema administrativo interno desenvolvido para gerenciar **toda a operação**
 
 ## 🏗️ Arquitetura
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                      CLIENTE (Browser)                  │
-│                   Vue.js 3 SPA + Tailwind               │
-│      Pinia (state) · Vue Router (guards) · Chart.js     │
-└─────────────────────┬───────────────────────────────────┘
-                      │  HTTPS
-                      ▼
-┌─────────────────────────────────────────────────────────┐
-│                    NGINX (Reverse Proxy)                 │
-│          Serve frontend build (dist/) + static files    │
-│                  SSL/TLS Termination                    │
-└─────────────────────┬───────────────────────────────────┘
-                      │  Proxy Pass → /api/*
-                      ▼
-┌─────────────────────────────────────────────────────────┐
-│               GUNICORN (WSGI Server)                    │
-│                                                         │
-│  ┌───────────────────────────────────────────────────┐  │
-│  │              FLASK APPLICATION                    │  │
-│  │                                                   │  │
-│  │  ┌─────────────┐  ┌────────────┐  ┌───────────┐  │  │
-│  │  │ Auth (JWT)  │  │ Rate Limit │  │ Talisman  │  │  │
-│  │  │ + Bcrypt    │  │ 300/min    │  │ CSP/HTTPS │  │  │
-│  │  └──────┬──────┘  └─────┬──────┘  └─────┬─────┘  │  │
-│  │         └───────────────┴───────────────┘         │  │
-│  │                       │                           │  │
-│  │  ┌────────────────────▼───────────────────────┐   │  │
-│  │  │            12 MÓDULOS DE ROTAS             │   │  │
-│  │  │  admin · clients · dashboard · goals       │   │  │
-│  │  │  orders · procedures · production          │   │  │
-│  │  │  products · registration · returns         │   │  │
-│  │  │  sales · users                             │   │  │
-│  │  └────────────────────┬───────────────────────┘   │  │
-│  │                       │                           │  │
-│  │  ┌────────────────────▼───────────────────────┐   │  │
-│  │  │         SQLAlchemy ORM (11 Models)         │   │  │
-│  │  └────────────────────┬───────────────────────┘   │  │
-│  └───────────────────────┼───────────────────────────┘  │
-└──────────────────────────┼──────────────────────────────┘
-                           │
-                           ▼
-              ┌────────────────────────┐
-              │     MySQL Database     │
-              └────────────────────────┘
+```mermaid
+flowchart TD
+    CLIENT["🖥️ Cliente (Browser)\nVue.js 3 SPA + Tailwind\nPinia · Vue Router · Chart.js"]
+    NGINX["🌐 Nginx (Reverse Proxy)\nServe frontend build + static files\nSSL/TLS Termination"]
+    GUNICORN["⚙️ Gunicorn (WSGI Server)"]
+    
+    subgraph FLASK["Flask Application"]
+        direction TB
+        AUTH["🔐 Auth\nJWT + Bcrypt"]
+        RATE["🛡️ Rate Limit\n300 req/min"]
+        TALISMAN["🔒 Talisman\nCSP / HTTPS"]
+        ROUTES["📡 12 Módulos de Rotas\nadmin · clients · dashboard · goals\norders · procedures · production\nproducts · registration · returns\nsales · users"]
+        ORM["🗃️ SQLAlchemy ORM\n11 Models"]
+        
+        AUTH & RATE & TALISMAN --> ROUTES
+        ROUTES --> ORM
+    end
+    
+    DB[("🐬 MySQL Database")]
+    
+    CLIENT -->|HTTPS| NGINX
+    NGINX -->|"Proxy Pass /api/*"| GUNICORN
+    GUNICORN --> FLASK
+    ORM --> DB
 ```
 
 ---
