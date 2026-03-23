@@ -26,6 +26,8 @@
 
 Sistema administrativo interno desenvolvido para gerenciar **toda a operação** de uma empresa — desde a produção e controle de estoque, passando por vendas e expedições, até dashboards analíticos com métricas de negócio.
 
+Sistema **fullstack** pronto para produção com infraestrutura completa de backend, frontend e VPS.
+
 **🌐 Projeto em produção:** [admin.sodaescorpiao.com.br](https://admin.sodaescorpiao.com.br)
 
 ---
