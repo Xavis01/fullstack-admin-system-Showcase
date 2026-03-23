@@ -1,0 +1,13 @@
+Flask
+Flask-SQLAlchemy
+Flask-Cors
+Flask-JWT-Extended
+python-dotenv
+PyMySQL
+cryptography
+Werkzeug
+gunicorn
+
+Flask-Limiter
+Flask-Talisman
+Flask-Bcrypt
