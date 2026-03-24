@@ -32,6 +32,8 @@ Sistema **fullstack** pronto para produção com infraestrutura completa de back
 
 ### 📸 Preview
 
+Dados reais ocultados por questões de segurança.
+
 <table>
   <tr>
     <td align="center"><img src="docs/screenshots/login.png" alt="Login" width="400"/><br/><sub>Tela de Login</sub></td>
