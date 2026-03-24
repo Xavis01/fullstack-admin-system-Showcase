@@ -30,6 +30,20 @@ Sistema **fullstack** pronto para produção com infraestrutura completa de back
 
 **🌐 Projeto em produção:** [admin.sodaescorpiao.com.br](https://admin.sodaescorpiao.com.br)
 
+### 📸 Preview
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/login.png" alt="Login" width="400"/><br/><sub>Tela de Login</sub></td>
+    <td align="center"><img src="docs/screenshots/home.png" alt="Home" width="400"/><br/><sub>Página Inicial</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/screenshots/dashboard.png" alt="Dashboard" width="270"/><br/><sub>Dashboard</sub></td>
+    <td align="center"><img src="docs/screenshots/production.png" alt="Produção" width="270"/><br/><sub>Produção</sub></td>
+    <td align="center"><img src="docs/screenshots/sale.png" alt="Vendas" width="270"/><br/><sub>Vendas</sub></td>
+  </tr>
+</table>
+
 ---
 
 ## ✨ Funcionalidades
